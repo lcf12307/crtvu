@@ -1,0 +1,121 @@
+package com.crtvu.dto.Manager;
+
+/**
+ * Created by lcf12 on 2017/3/25.
+ */
+public class studentJson {
+    private long id;
+    private String name;
+    private String className;
+    private String major;
+    private boolean success;
+    private String error;
+
+    @Override
+    public String toString() {
+        return "studentJson{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", className='" + className + '\'' +
+                ", major='" + major + '\'' +
+                ", success=" + success +
+                ", error='" + error + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public studentJson(long id, String name, String className, String major, boolean success, String error, String password) {
+
+        this.id = id;
+        this.name = name;
+        this.className = className;
+        this.major = major;
+        this.success = success;
+        this.error = error;
+        this.password = password;
+    }
+
+    private String password;
+
+    public studentJson(long id, String name, String className, String major) {
+        this.id = id;
+        this.name = name;
+        this.className = className;
+        this.major = major;
+    }
+
+    public studentJson(long id, String name, String className, String major, String password) {
+
+        this.id = id;
+        this.name = name;
+        this.className = className;
+        this.major = major;
+        this.password = password;
+    }
+
+    public studentJson(long id) {
+
+        this.id = id;
+    }
+
+    public long getId() {
+
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public studentJson() {
+
+    }
+}
