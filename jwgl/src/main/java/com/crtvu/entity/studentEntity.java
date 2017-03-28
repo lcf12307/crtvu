@@ -3,7 +3,7 @@ package com.crtvu.entity;
 /**
  * Created by lcf12 on 2017/3/15.
  */
-public class Student {
+public class studentEntity {
 
     private long id;
 
@@ -15,10 +15,17 @@ public class Student {
 
     private String password;
 
-    public Student() {
+    public studentEntity() {
     }
 
-    public Student(long id, String name, String className, String major, String password) {
+    public studentEntity(long id, String name, String className, String major) {
+        this.id = id;
+        this.name = name;
+        this.className = className;
+        this.major = major;
+    }
+
+    public studentEntity(long id, String name, String className, String major, String password) {
         this.id = id;
         this.name = name;
         this.className = className;
@@ -68,7 +75,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "studentEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", className='" + className + '\'' +
