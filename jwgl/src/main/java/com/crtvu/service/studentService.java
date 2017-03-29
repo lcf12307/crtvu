@@ -18,7 +18,7 @@ public interface studentService {
      * @param page
      * @return
      */
-    List<studentEntity> pagingStudent(int page)throws Exception;
+    List<studentEntity> pagingStudent(int page);
 
     /**
      * 找出总页数
@@ -30,19 +30,19 @@ public interface studentService {
      * @param id
      * @return
      */
-    studentEntity selectStudent(long id)throws Exception;
+    studentEntity selectStudent(long id);
 
     /**
      * 添加新同学
      * @param student
      */
-    void insertStudent( studentEntity student)throws Exception;
+    void insertStudent( studentEntity student);
 
     /**
      * 删除某一ID的同学
      * @param id
      */
-    void deleteStudent(long id)throws Exception;
+    void deleteStudent(long id);
 
     /**
      * 修改某同学的信息
@@ -51,13 +51,13 @@ public interface studentService {
      * @param className
      * @param major
      */
-    void updateStudent(long id, String name, String className, String major)throws Exception;
+    void updateStudent(long id, String name, String className, String major);
 
     /**
      * 修改密码
      * @param id
      * @param newPassword
      */
-    int updateStudentPassword(long id , String password, String newPassword)throws Exception;
+    int updateStudentPassword(long id , String password, String newPassword);
 
 }

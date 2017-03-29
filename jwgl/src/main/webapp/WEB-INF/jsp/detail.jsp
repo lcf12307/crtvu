@@ -28,7 +28,7 @@
                     major:major
                 }),  //提交json字符串数组
                 success:function(data){
-                    alert("插入数据"+sudent+"成功");//todo 仅供测试使用
+                    alert("插入数据"+sudent+"成功");
                 },
                 error:function(textStatus, errorThrown){
                     console.log(textStatus);
@@ -39,15 +39,8 @@
         function showModal() {
             var password=$('#passwordModal');
             password.modal({
-                    show:true,
-                    backdrop: 'static',
-                    keyboard: false//关闭键盘事件
+                    show:true
                 } );
-        }
-        function exitIt() {
-            var password=$('#passwordModal');
-            password.hidePopup();
-
         }
         function changePassword() {
             var id = $('#id').val();
@@ -109,10 +102,6 @@
             <div class="modal-footer">
                 <%--验证信息--%>
                 <span id="passwordMessage" class="glyphicon"> </span>
-                    <button type="button" id="ExitBtn" class="btn btn-exit" onclick="exitIt()">
-                        <span class="glyphicon glyphicon-phone"></span>
-                        Exit
-                    </button>
                 <button type="button" id="changeBtn" class="btn btn-success" onclick="changePassword()">
                     <span class="glyphicon glyphicon-phone"></span>
                     Submit

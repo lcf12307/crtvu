@@ -26,7 +26,7 @@ public class studentServiceImpl implements studentService {
     @Autowired
     private studentDAO studentDAO;
 
-    public List<studentEntity> pagingStudent ( int page) throws Exception{
+    public List<studentEntity> pagingStudent ( int page) {
         List<studentEntity> list = studentDAO.selectAllStudent();
         List<studentEntity> studentpage;
         if(list.size() / 10 + 1 < page && page < 1)
@@ -40,7 +40,7 @@ public class studentServiceImpl implements studentService {
         return studentpage;
     }
 
-    public studentEntity selectStudent(long id) throws Exception {
+    public studentEntity selectStudent(long id)  {
         return studentDAO.selectStudentById(id);
     }
 
@@ -49,21 +49,21 @@ public class studentServiceImpl implements studentService {
         return (list.size()/10)+1;
     }
 
-    public void insertStudent(studentEntity student) throws Exception{
+    public void insertStudent(studentEntity student) {
 
         String md5=getMD5(student.getPassword());
         studentDAO.insertStudent(student.getId(),student.getName(),student.getClassName(),student.getMajor(),md5);
     }
 
-    public void deleteStudent(long id)throws Exception {
+    public void deleteStudent(long id){
         studentDAO.deleteStudentById(id);
     }
 
-    public void updateStudent(long id, String name, String className, String major) throws Exception{
+    public void updateStudent(long id, String name, String className, String major){
         studentDAO.updateStudent(id,name,className,major);
     }
 
-    public int updateStudentPassword(long id, String password, String newPassword) throws Exception{
+    public int updateStudentPassword(long id, String password, String newPassword) {
         studentEntity studentEntity = studentDAO.selectStudentById(id);
         String md5;
            if(studentEntity.getPassword().equals(getMD5(password))){

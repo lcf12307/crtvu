@@ -17,6 +17,9 @@
             var password = $('#password').val();
             if(id == "" || name == "" || className == "" || major == "" || password == "" )
                 alert("输入数据不能为空");
+            else if(isNaN(id)){
+                alert("学号必须为数字");
+            }
             else{
                 $.ajax({
                     type: 'POST',
@@ -30,15 +33,14 @@
                         major:major,
                         password:password
                     }),  //提交json字符串数组
-                    success:function(data){
-                        alert("添加同学success");
+                    success:function(){
+                        alert("添加成功");
+                        alert(student.error());
                     },
-                    error:function(textStatus, errorThrown){
-
-                        window.location.reload(true);
+                    error:function(student, errorThrown){
 
                         console.log(textStatus);
-                        alert("添加同学成功");
+                        alert(student.error());
 
                     }
                 });

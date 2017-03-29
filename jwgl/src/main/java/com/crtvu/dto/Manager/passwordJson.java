@@ -4,11 +4,11 @@ package com.crtvu.dto.Manager;
  * Created by lcf12 on 2017/3/25.
  */
 public class passwordJson {
-    private long id;
-    private String oldPassword;
-    private String newPassword;
-    private boolean success;
-    private String error;
+    private long id;//需要修改密码的学生学号
+    private String oldPassword;//旧密码
+    private String newPassword;//新密码
+    private boolean success;//是否成功
+    private String error;//失败原因
 
 
 

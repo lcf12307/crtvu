@@ -4,13 +4,13 @@ package com.crtvu.dto.Manager;
  * Created by lcf12 on 2017/3/25.
  */
 public class studentJson {
-    private long id;
-    private String name;
-    private String className;
-    private String major;
-    private boolean success;
-    private String error;
-
+    private long id;//新学生的id
+    private String name;//新学生的名字
+    private String className;//新学生的班级
+    private String major;//新学生的专业
+    private boolean success;//是否修改成功
+    private String error;//失败原因
+    private String password;//学生密码
     @Override
     public String toString() {
         return "studentJson{" +
@@ -51,7 +51,7 @@ public class studentJson {
         this.password = password;
     }
 
-    private String password;
+
 
     public studentJson(long id, String name, String className, String major) {
         this.id = id;

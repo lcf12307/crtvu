@@ -24,10 +24,26 @@
             }
         }
         function delStudent(studentId){
-            var url = "/student/"+studentId+"/delete";
-            $.post(url,function(data){
-                alert(data);
-            })
+            var page = ${page};
+            var id = studentId;
+            var url = "/student/delete";
+            $.ajax({
+                type: 'POST',
+                url: url,
+                dataType: 'json',
+                contentType:'application/json;charset=UTF-8',
+                data:JSON.stringify({
+                    id:id,
+                    page:page,
+                }),  //提交json字符串数组
+                success:function(){
+                        window.location.reload();
+                },
+                error:function(textStatus, errorThrown){
+                    console.log(textStatus);
+                    alert("删除失败");
+                }
+            });
         }
     </script>
 </head>

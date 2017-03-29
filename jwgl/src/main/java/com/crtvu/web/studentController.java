@@ -3,6 +3,7 @@ package com.crtvu.web;
 /**
  * Created by lcf12 on 2017/3/17.
  */
+import com.crtvu.dto.Manager.deletejson;
 import com.crtvu.dto.Manager.passwordJson;
 import com.crtvu.dto.Manager.studentJson;
 import com.crtvu.entity.studentEntity;
@@ -56,16 +57,13 @@ public class studentController {
         return  "index";
     }
 
-    @RequestMapping(value = "/{studentId}/delete",method = RequestMethod.POST)
-    public void delete(@PathVariable("studentId") Long id)
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @ResponseBody
+    public deletejson delete(@RequestBody deletejson deletejson)
     {
+           studentService.deleteStudent(deletejson.getId());
 
-        //TODO 如果没有对应ID的同学，需返回无该同学
-       try{
-           studentService.deleteStudent(id);
-       }catch (Exception e){
-            e.printStackTrace();
-       }
+       return deletejson;
     }
 
     @RequestMapping(value = "/insertInfo" ,method = RequestMethod.GET)
@@ -73,41 +71,35 @@ public class studentController {
         return "insertStudent";
     }
 
-    @RequestMapping(value = "/insert" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/insert" ,method = RequestMethod.POST ,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String insert(@RequestBody studentJson student){
-       try {
-           studentEntity studentEntity = new studentEntity(student.getId(),student.getName(),student.getClassName(),student.getMajor(),student.getPassword());
-           studentService.insertStudent(studentEntity);
-           return "sucess";
-       }catch (Exception e){
-           e.printStackTrace();
-       }
-       return "index";
+    public studentJson insert(@RequestBody studentJson student ){
+
+             studentEntity studentEntity = new studentEntity(student.getId(),student.getName(),student.getClassName(),student.getMajor(),student.getPassword());
+               studentService.insertStudent(studentEntity);
+               if(studentService.selectStudent(student.getId()).getName() == student.getName() )
+                 student.setSuccess(true);
+               else{
+                   student.setError("该学号已经存在！");
+                   student.setSuccess(false);
+               }
+
+
+                 return student;
     }
 
     @RequestMapping(value = "/updatestudent" ,method = RequestMethod.POST)
     @ResponseBody
     public String updateStudent(@RequestBody studentJson student){
-        try {
             studentService.updateStudent(student.getId(),student.getName(),student.getClassName(),student.getMajor());
             return "sucess";
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "index";
     }
 
     @RequestMapping(value = "/changepassword" ,method = RequestMethod.POST)
     @ResponseBody
     public String changePassword(@RequestBody passwordJson passwordJson){
-       try {
            studentService.updateStudentPassword(passwordJson.getId(),passwordJson.getOldPassword(),passwordJson.getNewPassword());
            return "forward:/student/1/list";
-       }
-       catch (Exception e){
-           e.printStackTrace();
-       }
-       return passwordJson.toString();
+
     }
 }
