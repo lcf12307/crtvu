@@ -57,7 +57,7 @@ public class studentController {
         return  "index";
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public deletejson delete(@RequestBody deletejson deletejson)
     {
@@ -78,28 +78,28 @@ public class studentController {
              studentEntity studentEntity = new studentEntity(student.getId(),student.getName(),student.getClassName(),student.getMajor(),student.getPassword());
                studentService.insertStudent(studentEntity);
                if(studentService.selectStudent(student.getId()).getName() .equals(student.getName())  )
-                 student.setSuccess(true);
+               {
+                   student.setSuccess(true);
+               }
                else{
-                   student.setError("该学号已经存在！");
+                   student.setError("id already exist!");
                    student.setSuccess(false);
                }
-
-
                  return student;
     }
 
-    @RequestMapping(value = "/updatestudent" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/updatestudent" ,method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String updateStudent(@RequestBody studentJson student){
+    public studentJson updateStudent(@RequestBody studentJson student){
             studentService.updateStudent(student.getId(),student.getName(),student.getClassName(),student.getMajor());
-            return "sucess";
+            return student;
     }
 
-    @RequestMapping(value = "/changepassword" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/changepassword" ,method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public String changePassword(@RequestBody passwordJson passwordJson){
+    public passwordJson changePassword(@RequestBody passwordJson passwordJson){
            studentService.updateStudentPassword(passwordJson.getId(),passwordJson.getOldPassword(),passwordJson.getNewPassword());
-           return "forward:/student/1/list";
+           return passwordJson;
 
     }
 }

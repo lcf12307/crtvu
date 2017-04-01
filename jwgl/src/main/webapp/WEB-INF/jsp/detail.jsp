@@ -28,11 +28,10 @@
                     major:major
                 }),  //提交json字符串数组
                 success:function(data){
-                    alert("插入数据"+sudent+"成功");
+                    alert("修改数据成功");
                 },
-                error:function(textStatus, errorThrown){
-                    console.log(textStatus);
-                    alert("success");
+                error:function(){
+                    alert("修改数据失败！");
                 }
             });
         }
@@ -61,12 +60,12 @@
                         oldPassword: oldpassword,
                         newPassword: newpassword
                     }),  //提交json字符串数组
-                    success:function(data){
-
+                    success:function(){
+                        alert("修改密码成功！");
                     },
                     error:function(textStatus, errorThrown){
                         console.log(textStatus);
-                        alert("修改密码成功");
+                        alert("修改密码失败！");
                     }
                 });
             }

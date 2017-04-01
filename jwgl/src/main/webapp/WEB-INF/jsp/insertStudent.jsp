@@ -33,16 +33,12 @@
                         major:major,
                         password:password
                     }),  //提交json字符串数组
-                    success:function(student){
-                        if(student.sucess)
-                        alert("添加成功");
-                        else
-                        alert("添加失败");
-                    },
-                    error:function(student, errorThrown){
-
-                        console.log(textStatus);
-                        alert(student.error());
+                    success:function(){
+                         alert("添加成功");
+                     },
+                    error:function(){
+                        alert("该学号已存在！");
+                        console.log();
 
                     }
                 });
