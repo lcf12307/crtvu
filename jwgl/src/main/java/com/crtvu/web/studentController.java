@@ -77,7 +77,7 @@ public class studentController {
 
              studentEntity studentEntity = new studentEntity(student.getId(),student.getName(),student.getClassName(),student.getMajor(),student.getPassword());
                studentService.insertStudent(studentEntity);
-               if(studentService.selectStudent(student.getId()).getName() == student.getName() )
+               if(studentService.selectStudent(student.getId()).getName() .equals(student.getName())  )
                  student.setSuccess(true);
                else{
                    student.setError("该学号已经存在！");

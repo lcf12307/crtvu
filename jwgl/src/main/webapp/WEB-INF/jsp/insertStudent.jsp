@@ -33,9 +33,11 @@
                         major:major,
                         password:password
                     }),  //提交json字符串数组
-                    success:function(){
+                    success:function(student){
+                        if(student.sucess)
                         alert("添加成功");
-                        alert(student.error());
+                        else
+                        alert("添加失败");
                     },
                     error:function(student, errorThrown){
 
