@@ -16,24 +16,27 @@
             var major = $('#major').val();
             if(id == "" || name == "" || className == "" || major == ""  )
                 alert("输入数据不能为空");
-            $.ajax({
-                type: 'POST',
-                url: '/student/updatestudent' ,
-                dataType: 'json',
-                contentType:'application/json;charset=UTF-8',
-                data:JSON.stringify({
-                    id:id,
-                    name:name,
-                    className:className,
-                    major:major
-                }),  //提交json字符串数组
-                success:function(data){
-                    alert("修改数据成功");
-                },
-                error:function(){
-                    alert("修改数据失败！");
-                }
-            });
+            else{
+                $.ajax({
+                    type: 'POST',
+                    url: '/student/updatestudent' ,
+                    dataType: 'json',
+                    contentType:'application/json;charset=UTF-8',
+                    data:JSON.stringify({
+                        id:id,
+                        name:name,
+                        className:className,
+                        major:major
+                    }),  //提交json字符串数组
+                    success:function(data){
+                        alert("修改数据成功");
+                    },
+                    error:function(){
+                        alert("修改数据失败！");
+                    }
+                });
+            }
+
         }
         function showModal() {
             var password=$('#passwordModal');
