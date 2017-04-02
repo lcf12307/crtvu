@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.crtvu.dao.TeacherDao">
+    <!-- 添加样品 -->
+    <update id="updateTeacher" >
+        UPDATE  tb_teacher
+        set name = #{teacherName},title = #{teacherTitle},password = #{teacherPassword}
+        WHERE id = #{teacherId}
+    </update>
+
+    <select id="queryAll" resultType="Teacher">
+        select id as teacherId,name as teacherName,title as teacherTitle,password as teacherPassword
+        from tb_teacher
+        order by id ASC
+        limit #{offset},#{limit}
+    </select>
+
+    <select id="queryById" resultType="Teacher" parameterType="long">
+        select id as teacherId,name as teacherName,title as teacherTitle,password as teacherPassword
+        from tb_teacher
+        WHERE id = #{teacherId}
+    </select>
+
+    <insert id="insertTeacher">
+        insert ignore into tb_teacher(id,name,title,password)
+        values (#{teacherId},#{teacherName},#{teacherTitle},#{teacherPassword})
+    </insert>
+
+    <delete id="deleteById">
+        DELETE
+        FROM tb_teacher
+        WHERE id = #{teacherId}
+    </delete>
+</mapper>

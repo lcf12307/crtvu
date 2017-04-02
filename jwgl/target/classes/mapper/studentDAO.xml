@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.crtvu.dao.studentDAO">
+
+    <insert id = "insertStudent">
+        INSERT INTO tb_student
+        VALUES (#{id},#{name},#{className},#{major},#{password})
+    </insert>
+
+    <delete id = "deleteStudentById" parameterType="long">
+        DELETE
+        FROM tb_student
+        WHERE id = #{id}
+    </delete>
+
+    <update id = "updateStudentPassword">
+        UPDATE tb_student
+        SET password = #{password}
+        WHERE id = #{id}
+    </update>
+
+    <update id = "updateStudent">
+        UPDATE tb_student
+        SET name = #{name},class_name = #{className},major = #{major}
+        WHERE id = #{id}
+    </update>
+    
+    <select id = "selectStudentById" parameterType="long" resultType = "studentEntity">
+        SELECT id,name,class_name,major,password
+        FROM tb_student
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectAllStudent" resultType="studentEntity">
+        SELECT id,name,class_name,major,password
+        FROM tb_student
+    </select>
+
+</mapper>
