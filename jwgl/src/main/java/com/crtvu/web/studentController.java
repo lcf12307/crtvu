@@ -33,7 +33,7 @@ public class studentController {
         catch(Exception e){
             e.printStackTrace();
     }
-        return "list";
+        return "student/list";
     }
 
     @RequestMapping(value = "/{studentId}/detail",method = RequestMethod.GET)
@@ -49,12 +49,12 @@ public class studentController {
                 return "forward:/student/1/list";
             }
             model.addAttribute("student",student);
-            return "detail";
+            return "student/detail";
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        return  "index";
+        return  "student/index";
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
@@ -68,7 +68,7 @@ public class studentController {
 
     @RequestMapping(value = "/insertInfo" ,method = RequestMethod.GET)
     public String insertInfo(){
-        return "insertStudent";
+        return "student/insertStudent";
     }
 
     @RequestMapping(value = "/insert" ,method = RequestMethod.POST ,produces = {"application/json;charset=UTF-8"})
