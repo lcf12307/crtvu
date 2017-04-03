@@ -27,23 +27,26 @@
             var page = ${page};
             var id = studentId;
             var url = "/student/delete";
-            $.ajax({
-                type: 'POST',
-                url: url,
-                dataType: 'json',
-                contentType:'application/json;charset=UTF-8',
-                data:JSON.stringify({
-                    id:id,
-                    page:page
-                }),  //提交json字符串数组
-                success:function(){
+            if(confirm("确定要删除该同学吗")){
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    contentType:'application/json;charset=UTF-8',
+                    data:JSON.stringify({
+                        id:id,
+                        page:page
+                    }),  //提交json字符串数组
+                    success:function(){
                         window.location.reload();
-                },
-                error:function(){
-                    console.log(textStatus);
-                    alert("删除失败");
-                }
-            });
+                    },
+                    error:function(){
+                        console.log(textStatus);
+                        alert("删除失败");
+                    }
+                });
+            }
+
         }
     </script>
 </head>
@@ -71,7 +74,7 @@
                         <td>${student.name}</td>
                         <td>${student.className}</td>
                         <td>${student.major}</td>
-                        <td><a class="btn btn-info" href="/student/${student.id}/detail" target="_blank">编辑</a>
+                        <td><a class="btn btn-info" href="/student/${student.id}/edit" target="_blank">编辑</a>
                             <a class="btn btn-info" onclick="delStudent(${student.id})" target="_blank">删除</a>
                         </td>
                     </tr>
@@ -79,10 +82,10 @@
                 </tbody>
             </table>
             <div align="right">
-                    <td><a class="btn btn-info" href="/student/1/list" target="_self">首页</a></td>
+                    <td><a class="btn btn-info" href="/student/1/list" target="_self">第一页</a></td>
                     <td><a class="btn btn-info" href="#" onclick="ahead()" target="_self">前一页</a></td>
                     <td><a class="btn btn-info" href="#" onclick="behind()" target="_self">下一页</a></td>
-                    <td><a class="btn btn-info" href="/student/insertInfo" target="_blank">添加同学</a></td>
+                    <td><a class="btn btn-info" href="/student/insertInfo" target="_self">添加同学</a></td>
                 </tr>
             </div>
         </div>

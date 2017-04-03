@@ -33,11 +33,11 @@ public class studentController {
         catch(Exception e){
             e.printStackTrace();
     }
-        return "student/list";
+        return "backup/student/list";
     }
 
-    @RequestMapping(value = "/{studentId}/detail",method = RequestMethod.GET)
-    public String detail(@PathVariable("studentId") Long id, Model model)
+    @RequestMapping(value = "/{studentId}/edit",method = RequestMethod.GET)
+    public String edit(@PathVariable("studentId") Long id, Model model)
     {
         if (id == null){
             return "redirect:/student/1/list";
@@ -49,12 +49,12 @@ public class studentController {
                 return "forward:/student/1/list";
             }
             model.addAttribute("student",student);
-            return "student/detail";
+            return "backup/student/edit";
         }
         catch (Exception e){
             e.printStackTrace();
         }
-        return  "student/index";
+        return  "backup/student/index";
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
@@ -68,7 +68,7 @@ public class studentController {
 
     @RequestMapping(value = "/insertInfo" ,method = RequestMethod.GET)
     public String insertInfo(){
-        return "student/insertStudent";
+        return "backup/student/insert";
     }
 
     @RequestMapping(value = "/insert" ,method = RequestMethod.POST ,produces = {"application/json;charset=UTF-8"})
@@ -88,7 +88,7 @@ public class studentController {
                  return student;
     }
 
-    @RequestMapping(value = "/updatestudent" ,method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/updateStudent" ,method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public studentJson updateStudent(@RequestBody studentJson student){
             studentService.updateStudent(student.getId(),student.getName(),student.getClassName(),student.getMajor());
@@ -98,8 +98,14 @@ public class studentController {
     @RequestMapping(value = "/changepassword" ,method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public passwordJson changePassword(@RequestBody passwordJson passwordJson){
-           studentService.updateStudentPassword(passwordJson.getId(),passwordJson.getOldPassword(),passwordJson.getNewPassword());
-           return passwordJson;
-
+            studentEntity student = studentService.selectStudent(passwordJson.getId());
+            if(studentService.samePasswor(passwordJson.getNewPassword(),student.getPassword())){
+                passwordJson.setError("新旧密码不能相同");
+                passwordJson.setSucess(false);
+            }else{
+                studentService.updateStudentPassword(passwordJson.getId(),passwordJson.getNewPassword());
+                passwordJson.setSucess(true);
+            }
+             return passwordJson;
     }
 }

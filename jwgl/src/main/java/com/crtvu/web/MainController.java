@@ -14,6 +14,6 @@ public class MainController {
     }
     @RequestMapping("/index")
     public String getMainPage() {
-        return "student/index";
+        return "backup/student/index";
     }
 }

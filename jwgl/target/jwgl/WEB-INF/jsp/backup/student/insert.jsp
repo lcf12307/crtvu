@@ -17,8 +17,12 @@
             var password = $('#password').val();
             if(id == "" || name == "" || className == "" || major == "" || password == "" )
                 alert("输入数据不能为空");
-            else if(isNaN(id)){
+            else  if(id.length != 10 || isNaN(id)){
+                alert("ID请输入10位数字");
+            }else if(isNaN(id)){
                 alert("学号必须为数字");
+            }else if(password.length < 8{
+                alert("密码请输入至少八位数字");
             }
             else{
                 $.ajax({
@@ -35,7 +39,8 @@
                     }),  //提交json字符串数组
                     success:function(){
                          alert("添加成功");
-                     },
+                        window.location.href="/student/1/list";
+                    },
                     error:function(){
                         alert("该学号已存在！");
                         console.log();
@@ -52,7 +57,7 @@
     <div class="panel panel-default">
     <h2>添加新同学</h2>
     <form action="" id="studentInfo" name="f1">
-        <br>学号：<input name="id" id="id"  type="text"  value=""> <br>
+        <br>学号：<input name="id" id="id"  type="text" placeholder="10位数字" value=""> <br>
         <br>姓名：<input name="name" id="name" type="text" value=""><br>
         <br>班级：<input name="className" id="className" type="text" value=""><br>
         <br>专业：<input name="major" id="major" type="text" value=""><br>

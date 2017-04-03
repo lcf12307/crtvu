@@ -5,7 +5,6 @@ package com.crtvu.dto.Manager;
  */
 public class passwordJson {
     private long id;//需要修改密码的学生学号
-    private String oldPassword;//旧密码
     private String newPassword;//新密码
     private boolean success;//是否成功
     private String error;//失败原因
@@ -16,16 +15,14 @@ public class passwordJson {
     public String toString() {
         return "passwordJson{" +
                 "id='" + id + '\'' +
-                ", oldPassword='" + oldPassword + '\'' +
                 ", newPassword='" + newPassword + '\'' +
                 ", sucess='" + success + '\'' +
                 ", error='" + error + '\'' +
                 '}';
     }
 
-    public passwordJson(long id, String oldPassword, String newPassword, boolean success, String error) {
+    public passwordJson(long id, String newPassword, boolean success, String error) {
         this.id = id;
-        this.oldPassword = oldPassword;
         this.newPassword = newPassword;
         this.success = success;
         this.error = error;
@@ -51,9 +48,8 @@ public class passwordJson {
     public passwordJson() {
     }
 
-    public passwordJson(long id, String oldPassword, String newPassword) {
+    public passwordJson(long id,String newPassword) {
         this.id = id;
-        this.oldPassword = oldPassword;
         this.newPassword = newPassword;
     }
 
@@ -63,14 +59,6 @@ public class passwordJson {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getOldPassword() {
-        return oldPassword;
-    }
-
-    public void setOldPassword(String oldPassword) {
-        this.oldPassword = oldPassword;
     }
 
     public String getNewPassword() {

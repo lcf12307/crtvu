@@ -33,6 +33,13 @@ public interface studentService {
     studentEntity selectStudent(long id);
 
     /**
+     * 判断新旧密码是否相同
+     * @param newPasswor
+     * @param password
+     * @return
+     */
+    boolean samePasswor(String newPasswor,String password);
+    /**
      * 添加新同学
      * @param student
      */
@@ -58,6 +65,6 @@ public interface studentService {
      * @param id
      * @param newPassword
      */
-    int updateStudentPassword(long id , String password, String newPassword);
+    void updateStudentPassword(long id , String newPassword);
 
 }

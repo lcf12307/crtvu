@@ -30,7 +30,7 @@ public class studentServiceTest {
     public void updateStudentPassword1() throws Exception {
         long id = 3;
         String password = "246";
-        studentService.updateStudentPassword(id,"123",password);
+        studentService.updateStudentPassword(id,password);
         studentEntity studentEntity = studentService.selectStudent(id);
         System.out.println(studentEntity.getId());
         System.out.println(studentEntity);

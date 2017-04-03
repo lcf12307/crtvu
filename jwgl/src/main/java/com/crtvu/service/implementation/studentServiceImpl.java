@@ -44,13 +44,19 @@ public class studentServiceImpl implements studentService {
         return studentDAO.selectStudentById(id);
     }
 
+    public boolean samePasswor(String newPasswor, String password) {
+        if(getMD5(newPasswor).equals(password)){
+            return true;
+        }
+        return false;
+    }
+
     public int page() {
         List<studentEntity> list = studentDAO.selectAllStudent();
         return (list.size()/10)+1;
     }
 
     public void insertStudent(studentEntity student) {
-
         String md5=getMD5(student.getPassword());
         studentDAO.insertStudent(student.getId(),student.getName(),student.getClassName(),student.getMajor(),md5);
     }
@@ -63,17 +69,11 @@ public class studentServiceImpl implements studentService {
         studentDAO.updateStudent(id,name,className,major);
     }
 
-    public int updateStudentPassword(long id, String password, String newPassword) {
+    public void updateStudentPassword(long id, String newPassword) {
         studentEntity studentEntity = studentDAO.selectStudentById(id);
         String md5;
-           if(studentEntity.getPassword().equals(getMD5(password))){
-               md5=getMD5(newPassword);
-               studentDAO.updateStudentPassword(id,md5);
-               return 1;//修改密码成功
-           } else{
-               System.out.println("hello");
-               return 0;//修改密码失败
-           }
+        md5=getMD5(newPassword);
+        studentDAO.updateStudentPassword(id,md5);
     }
 
     private String getMD5(String password)
