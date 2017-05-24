@@ -3,8 +3,8 @@ package com.crtvu.dto.Manager;
 /**
  * Created by lcf12 on 2017/3/25.
  */
-public class passwordJson {
-    private long id;//需要修改密码的学生学号
+public class PasswordJson {
+    private int id;//需要修改密码的学生学号
     private String newPassword;//新密码
     private boolean success;//是否成功
     private String error;//失败原因
@@ -13,7 +13,7 @@ public class passwordJson {
 
     @Override
     public String toString() {
-        return "passwordJson{" +
+        return "PasswordJson{" +
                 "id='" + id + '\'' +
                 ", newPassword='" + newPassword + '\'' +
                 ", sucess='" + success + '\'' +
@@ -21,7 +21,7 @@ public class passwordJson {
                 '}';
     }
 
-    public passwordJson(long id, String newPassword, boolean success, String error) {
+    public PasswordJson(int id, String newPassword, boolean success, String error) {
         this.id = id;
         this.newPassword = newPassword;
         this.success = success;
@@ -45,19 +45,19 @@ public class passwordJson {
         this.error = error;
     }
 
-    public passwordJson() {
+    public PasswordJson() {
     }
 
-    public passwordJson(long id,String newPassword) {
+    public PasswordJson(int id, String newPassword) {
         this.id = id;
         this.newPassword = newPassword;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

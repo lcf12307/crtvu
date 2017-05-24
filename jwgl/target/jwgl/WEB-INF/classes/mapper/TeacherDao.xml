@@ -1,35 +1,63 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.crtvu.dao.TeacherDao">
+<mapper namespace="com.crtvu.dao.TeacherDAO">
     <!-- 添加样品 -->
-    <update id="updateTeacher" >
-        UPDATE  tb_teacher
-        set name = #{teacherName},title = #{teacherTitle},password = #{teacherPassword}
-        WHERE id = #{teacherId}
+    <update id="updateTeacher">
+        UPDATE tb_teacher
+        set teacher_name = #{1}, title = #{2}
+        WHERE teacher_id = #{0}
     </update>
 
-    <select id="queryAll" resultType="Teacher">
-        select id as teacherId,name as teacherName,title as teacherTitle,password as teacherPassword
+    <update id="updateTeacherPassword">
+        UPDATE tb_teacher
+        set password = #{1}
+        WHERE teacher_id = #{0}
+    </update>
+
+    <select id="selectAllTeacher" resultType="TeacherEntity">
+        select *
         from tb_teacher
-        order by id ASC
-        limit #{offset},#{limit}
+        order by teacher_id ASC
     </select>
 
-    <select id="queryById" resultType="Teacher" parameterType="long">
-        select id as teacherId,name as teacherName,title as teacherTitle,password as teacherPassword
+    <select id="selectTeacher" resultType="TeacherEntity">
+        select *
         from tb_teacher
-        WHERE id = #{teacherId}
+        WHERE teacher_id = #{teacherId}
     </select>
 
-    <insert id="insertTeacher">
-        insert ignore into tb_teacher(id,name,title,password)
-        values (#{teacherId},#{teacherName},#{teacherTitle},#{teacherPassword})
+    <select id="selectTeacherByLimit" resultType="TeacherEntity">
+        SELECT *
+        FROM tb_teacher
+        WHERE teacher_id LIKE CONCAT(CONCAT('%', #{teacherProperty}), '%')
+        or teacher_name like CONCAT(CONCAT('%', #{teacherProperty}), '%')
+        or  title like CONCAT(CONCAT('%', #{teacherProperty}), '%')
+        LIMIT #{index},#{count}
+    </select>
+
+
+    <select id="countAllTeacher" resultType="int">
+        SELECT COUNT(*) FROM tb_teacher
+        WHERE teacher_id LIKE CONCAT(CONCAT('%', #{teacherProperty}), '%')
+              or teacher_name like CONCAT(CONCAT('%', #{teacherProperty}), '%')
+              or  title like CONCAT(CONCAT('%', #{teacherProperty}), '%')
+    </select>
+
+    <insert id="insertTeacher" >
+        INSERT INTO tb_teacher
+        VALUES (#{0},#{1},#{2},#{3})
     </insert>
 
-    <delete id="deleteById">
+    <delete id="deleteTeacher">
         DELETE
         FROM tb_teacher
-        WHERE id = #{teacherId}
+        WHERE teacher_id = #{teacherId}
     </delete>
+
+    <!--通过教师Id查询教师-->
+    <select id="queryTeacherById" parameterType="int" resultType="Teacher">
+        SELECT * FROM tb_teacher WHERE teacher_id = #{teacherId};
+    </select>
+
 </mapper>

@@ -1,9 +1,0 @@
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.crtvu.dao.sampleDAO">
-    <!-- 添加样品 -->
-    <update id="addSample" parameterType="int">
---         写sql语句完成函数即可
-    </update>
-</mapper>

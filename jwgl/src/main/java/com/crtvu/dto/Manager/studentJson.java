@@ -3,8 +3,8 @@ package com.crtvu.dto.Manager;
 /**
  * Created by lcf12 on 2017/3/25.
  */
-public class studentJson {
-    private long id;//新学生的id
+public class StudentJson {
+    private int id;//新学生的id
     private String name;//新学生的名字
     private String className;//新学生的班级
     private String major;//新学生的专业
@@ -13,7 +13,7 @@ public class studentJson {
     private String password;//学生密码
     @Override
     public String toString() {
-        return "studentJson{" +
+        return "StudentJson{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", className='" + className + '\'' +
@@ -40,7 +40,7 @@ public class studentJson {
         this.error = error;
     }
 
-    public studentJson(long id, String name, String className, String major, boolean success, String error, String password) {
+    public StudentJson(int id, String name, String className, String major, boolean success, String error, String password) {
 
         this.id = id;
         this.name = name;
@@ -53,14 +53,14 @@ public class studentJson {
 
 
 
-    public studentJson(long id, String name, String className, String major) {
+    public StudentJson(int id, String name, String className, String major) {
         this.id = id;
         this.name = name;
         this.className = className;
         this.major = major;
     }
 
-    public studentJson(long id, String name, String className, String major, String password) {
+    public StudentJson(int id, String name, String className, String major, String password) {
 
         this.id = id;
         this.name = name;
@@ -69,17 +69,17 @@ public class studentJson {
         this.password = password;
     }
 
-    public studentJson(long id) {
+    public StudentJson(int id) {
 
         this.id = id;
     }
 
-    public long getId() {
+    public int getId() {
 
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -115,7 +115,7 @@ public class studentJson {
         this.password = password;
     }
 
-    public studentJson() {
+    public StudentJson() {
 
     }
 }
